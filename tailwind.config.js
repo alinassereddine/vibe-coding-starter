@@ -76,6 +76,7 @@ module.exports = {
           foreground: 'hsl(var(--card-foreground))',
         },
       },
+      // @ts-ignore
       typography: ({ theme }) => ({
         DEFAULT: {
           css: {

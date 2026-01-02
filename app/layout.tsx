@@ -1,7 +1,7 @@
 import { Nunito_Sans } from 'next/font/google';
 import { siteConfig } from '@/data/config/site.settings';
 import { ThemeProviders } from './theme-providers';
-import { Metadata } from 'next';
+import { Metadata, Viewport } from 'next';
 
 import { colors } from '@/data/config/colors.js';
 
@@ -24,12 +24,20 @@ const baseFont = Nunito_Sans({
 const globalColors = colors;
 const style: string[] = [];
 
-Object.keys(globalColors).map((variant) => {
-  return Object.keys(globalColors[variant]).map((color) => {
-    const value = globalColors[variant][color];
+Object.keys(globalColors).forEach((variant) => {
+  const colorGroup = globalColors[variant as keyof typeof globalColors] as Record<string, string>;
+  Object.keys(colorGroup).forEach((color) => {
+    const value = colorGroup[color];
     style.push(`--${variant}-${color}: ${value}`);
   });
 });
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#fff' },
+    { media: '(prefers-color-scheme: dark)', color: '#000' },
+  ],
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
@@ -38,6 +46,19 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.title}`,
   },
   description: siteConfig.description,
+  icons: {
+    icon: [
+      { url: '/static/favicons/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/static/favicons/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/static/favicons/apple-touch-icon.png', sizes: '76x76' },
+    ],
+    other: [
+      { rel: 'mask-icon', url: '/static/favicons/safari-pinned-tab.svg', color: '#5bbad5' },
+    ],
+  },
+  manifest: '/static/favicons/manifest.webmanifest',
   openGraph: {
     title: siteConfig.title,
     description: siteConfig.description,
@@ -90,52 +111,18 @@ export default function RootLayout({
           }
         `}
         </style>
-
-        <link
-          rel="apple-touch-icon"
-          sizes="76x76"
-          href="/static/favicons/apple-touch-icon.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/static/favicons/favicon-32x32.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/static/favicons/favicon-16x16.png"
-        />
-        <link rel="manifest" href="/static/favicons/manifest.webmanifest" />
-        <link
-          rel="mask-icon"
-          href="/static/favicons/safari-pinned-tab.svg"
-          color="#5bbad5"
-        />
         <meta name="generator" content="Shipixen" />
         <meta name="msapplication-TileColor" content="#000000" />
-        <meta
-          name="theme-color"
-          media="(prefers-color-scheme: light)"
-          content="#fff"
-        />
-        <meta
-          name="theme-color"
-          media="(prefers-color-scheme: dark)"
-          content="#000"
-        />
         <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
       </head>
 
-      <body className="flex flex-col bg-white text-black antialiased dark:bg-gray-950 dark:text-white min-h-screen">
+      <body className="flex flex-col min-h-screen antialiased text-black bg-white dark:bg-gray-950 dark:text-white">
         <ThemeProviders>
           <AnalyticsWrapper />
 
-          <div className="w-full flex flex-col justify-between items-center font-sans">
+          <div className="flex flex-col items-center justify-between w-full font-sans">
             <SearchProvider>
-              <main className="w-full flex flex-col items-center mb-auto">
+              <main className="flex flex-col items-center w-full mb-auto">
                 {children}
               </main>
             </SearchProvider>

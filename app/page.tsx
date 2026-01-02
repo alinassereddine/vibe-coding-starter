@@ -26,10 +26,10 @@ export default function Page() {
       <Header className="mb-4" />
 
       <LandingPrimaryImageCtaSection
-        title="A simpler way to manage your money"
-        description="Take charge of your finances with Mevolut. Your money, clear and simple."
+        title="Manage Your Private Tutoring Business with Ease"
+        description="Track students, plan lessons, monitor progress, and manage payments. Everything a private teacher needs in one dashboard."
         imageSrc="/static/images/1.jpg"
-        imageAlt="Dashboard Preview"
+        imageAlt="Tutor Dashboard Preview"
         imagePosition="right"
         imageShadow="hard"
         textPosition="left"
@@ -38,10 +38,10 @@ export default function Page() {
         minHeight={350}
       >
         <Button size="xl" asChild>
-          <Link href="/dashboard">Dashboard</Link>
+          <Link href="/dashboard">Go to Dashboard</Link>
         </Button>
         <Button size="xl" variant="outlinePrimary" asChild>
-          <Link href="/pricing">Pricing</Link>
+          <Link href="/pricing">View Plans</Link>
         </Button>
         <LandingSocialProof
           className="mt-6 w-full"
