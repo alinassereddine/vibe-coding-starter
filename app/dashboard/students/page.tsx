@@ -1,8 +1,8 @@
 'use client';
 
 import { MOCK_STUDENTS } from '@/data/tutor-data';
-import { SearchIcon, PlusIcon, MoreHorizontalIcon } from 'lucide-react';
-import Link from 'next/link';
+import { SearchIcon, MoreHorizontalIcon } from 'lucide-react';
+import { AddStudentSheet } from './AddStudentSheet';
 
 export default function StudentsPage() {
   return (
@@ -17,10 +17,7 @@ export default function StudentsPage() {
             className="w-full h-10 pl-9 pr-4 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500"
           />
         </div>
-        <button className="flex items-center justify-center gap-2 px-4 py-2 bg-primary-600 text-white rounded-lg text-sm font-medium hover:bg-primary-700 transition-colors">
-          <PlusIcon className="w-4 h-4" />
-          Add Student
-        </button>
+        <AddStudentSheet />
       </div>
 
       {/* Students Table */}

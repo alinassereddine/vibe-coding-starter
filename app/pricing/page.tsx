@@ -30,9 +30,9 @@ export default function PricingPage() {
                 Pricing
               </h1>
               <p className="text-gray-600 dark:text-gray-400 mt-4 text-lg leading-relaxed max-w-lg">
-                Choose the plan that's right for you. We offer a free plan for
-                those who are just starting out, and a paid plan for those who
-                need more features.
+                Choose the plan that's right for your teaching business. We offer a free plan for
+                new tutors, and a professional plan for those who
+                need more power.
               </p>
             </div>
 
